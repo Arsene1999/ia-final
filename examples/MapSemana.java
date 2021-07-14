@@ -679,7 +679,7 @@ public class MapSemana extends CSP<Variable, String> {
 		int cont = 0;
 		int auxTotal = 0;
 		
-		
+		System.out.println(escolhido);
 		for(int i=0; i < 40; i++) {
 			aux = new Variable(escolhido, i);
 			addVariable(aux);
@@ -865,12 +865,12 @@ public class MapSemana extends CSP<Variable, String> {
 		}
 		
 		if(horariosPIBITI.length > 0) {
-			AddPIBITIouPIBIC("PIBITI",horariosPIBITI);
-			//AgregadorRestrictDia(horariosPIBITI,"PIBITI");
+			System.out.println(horariosPIBITI.length);
+			AddPIBITIouPIBIC("PIBITI",horariosPIBITI); 
 		}
 		if(horariosPIBIC.length > 0) {
-			AddPIBITIouPIBIC("PIBIC",horariosPIBITI);
-			//AgregadorRestrictDia(horariosPIBIC,"PIBIC");
+			AddPIBITIouPIBIC("PIBIC",horariosPIBIC);
+	
 		}
 		
 		if(horariosEstagio.length > 0) {
