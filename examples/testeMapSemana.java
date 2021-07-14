@@ -36,7 +36,7 @@ public class testeMapSemana {
 		//int[] horariosPIBIC = {4,4,4,4,4};
 		int[] horariosPIBIC = {};
 		int[] horariosEstagio = {};
-		int[] horariosTrabalho = {8,8,8,4,12};
+		int[] horariosTrabalho = {8,8,8,4,12,2};
 		ArrayList<AtividadesComp> atividades = new ArrayList<>();
 		atividades.add(new AtividadesComp("Palestra",0,3));
 		atividades.add(new AtividadesComp("Palestra",2,3));
@@ -49,8 +49,41 @@ public class testeMapSemana {
 		
 		System.out.println();
 		ArrayList<Resposta> res = solution.get().RetornaOMapa();
+		Resposta[][] tabela = new Resposta[6][20];
 		for(Resposta var : res) {
-			System.out.println(var.getName()+ " " + var.getDia()+"  "+var.getTempo());
+			tabela[var.getDia()] [var.getTempo()] = var;
+			
+		}
+		
+		int mv = 0;
+		
+		for (int i = 0; i < 20; i++) { 
+	         for (int j = 0; j <6; j++) { 
+	        	 if (tabela[j][i] != null && tabela[j][i].getName().length() > mv) {
+	        		mv = tabela[j][i].getName().length();
+	        	 }
+	         }	 
+		}
+		System.out.println("===============================================================================================");
+		System.out.println ("  HORARIO " + " [  SEGUNDA " + "  ][   TERÇA  " + "  ][   QUARTA " + "  ][   QUINTA  " + " ][   SEXTA    " + "][   SÁBADO   ]");
+		System.out.println("===============================================================================================");
+		for (int i = 0; i < 20; i++) { 
+			if (i<9) System.out.print("Horário 0"+ (i+1) + " ");
+			else System.out.print("Horário "+ (i+1) + " ");
+	         for (int j = 0; j <6; j++) { 
+	        	 if ( tabela[j][i] == null ) {
+	        		 System.out.print("[ ---------- ]");
+	        	 }
+	        	 else {
+	        		 if (tabela[j][i].getName().length() < mv) {
+	        			 for (int k = tabela[j][i].getName().length(); k < mv; k++) {
+	        				 tabela[j][i].setName(tabela[j][i].getName().concat("-") );
+	        			 }
+	        		 }
+	        		 System.out.print("[ " +  tabela[j][i].getName() + " ]");
+	        	 }
+	         }
+	         System.out.print("\n");
 		}
 	}
 
