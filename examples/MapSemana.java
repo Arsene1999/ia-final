@@ -193,7 +193,24 @@ public class MapSemana extends CSP<Variable, String> {
 	public static final horaDia Sabado19 = new horaDia(5,18);
 	public static final horaDia Sabado20 = new horaDia(5,19);
 	
-	public void Caso1() {
+	public void VerificaOsBlocos(String[] ExistemOsBlocos,ArrayList<BlocoDeEstudo> blocos) {
+		boolean existe = false;
+		for(int i = 0; i < ExistemOsBlocos.length; i++) {
+			existe = false;
+			for(BlocoDeEstudo var : blocos) {
+				if(var.getRef().equals(ExistemOsBlocos[i])) {
+					existe = true;
+					break;
+				}
+			}
+			if(existe == false) {
+				System.out.print("[ERRO]: Está faltando bloco de estudo para a materia "+ ExistemOsBlocos[i]+" :[ERRO]");
+				System.exit(0);
+			}
+		}
+	}
+	
+	public void Caso1( ArrayList<BlocoDeEstudo> blocos) {
 		Variable COMP0408 = new Variable("COMP0408",0);
 		Variable COMP0408_2 = new Variable("COMP0408",1);
 		Variable COMP0408_3 = new Variable("COMP0408",2);
@@ -225,6 +242,7 @@ public class MapSemana extends CSP<Variable, String> {
 		addVariable(COMP0408_6);
 		addVariable(COMP0408_7);
 		addVariable(COMP0408_8);
+		
 		
 		
 		addVariable(COMP0455);
@@ -272,10 +290,14 @@ public class MapSemana extends CSP<Variable, String> {
 		horasDaSemana[1] = horasDaSemana[1] - 4;
 		horasDaSemana[2] = horasDaSemana[2] - 4;
 		horasDaSemana[3] = horasDaSemana[3] - 8;
+		
+		String[] ExistemOsBlocos = {"COMP0408", "COMP0455", "COMP0481"};
+		VerificaOsBlocos(ExistemOsBlocos, blocos);
+		
 	}
 
 	
-	public void Caso2() {
+	public void Caso2(ArrayList<BlocoDeEstudo> blocos) {
 		Variable COMP0408 = new Variable("COMP0408",0);
 		Variable COMP0408_2 = new Variable("COMP0408",1);
 		Variable COMP0408_3 = new Variable("COMP0408",2);
@@ -419,7 +441,238 @@ public class MapSemana extends CSP<Variable, String> {
 		addConstraint(new isSeted(COMP0438_7,Sexta7));
 		addConstraint(new isSeted(COMP0438_8,Sexta8));
 		
+		
+		horasDaSemana[0] = horasDaSemana[0] - 12;
+		horasDaSemana[1] = horasDaSemana[1] - 4;
+		horasDaSemana[2] = horasDaSemana[2] - 12;
+		horasDaSemana[3] = horasDaSemana[3] - 4;
+		horasDaSemana[4] = horasDaSemana[4] - 8;
+		String[] ExistemOsBlocos = {"COMP0408", "COMP0409", "COMP0412","COMP0461", "COMP0438"};
+		VerificaOsBlocos(ExistemOsBlocos, blocos);
+		
 	}
+	
+	public void Caso3(ArrayList<BlocoDeEstudo> blocos) {
+		Variable ELET0043 = new Variable("ELET0043",0);
+		Variable ELET0043_2 = new Variable("ELET0043",1);
+		Variable ELET0043_3 = new Variable("ELET0043",2);
+		Variable ELET0043_4 = new Variable("ELET0043",3);
+		
+		addVariable(ELET0043);
+		addVariable(ELET0043_2);
+		addVariable(ELET0043_3);
+		addVariable(ELET0043_4);
+		
+		
+		addConstraint(new isSeted(ELET0043,Segunda1));
+		addConstraint(new isSeted(ELET0043_2,Segunda2));
+		addConstraint(new isSeted(ELET0043_3,Segunda3));
+		addConstraint(new isSeted(ELET0043_4,Segunda4));
+		
+		Variable ESTAT0011 = new Variable("ESTAT0011",0);
+		Variable ESTAT0011_2 = new Variable("ESTAT0011",1);
+		Variable ESTAT0011_3 = new Variable("ESTAT0011",2);
+		Variable ESTAT0011_4 = new Variable("ESTAT0011",3);
+		Variable ESTAT0011_5 = new Variable("ESTAT0011",5);
+		Variable ESTAT0011_6 = new Variable("ESTAT0011",6);
+		Variable ESTAT0011_7 = new Variable("ESTAT0011",7);
+		Variable ESTAT0011_8 = new Variable("ESTAT0011",8);
+		
+		addVariable(ESTAT0011);
+		addVariable(ESTAT0011_2);
+		addVariable(ESTAT0011_3);
+		addVariable(ESTAT0011_4);
+		addVariable(ESTAT0011_5);
+		addVariable(ESTAT0011_6);
+		addVariable(ESTAT0011_7);
+		addVariable(ESTAT0011_8);
+		
+		
+		addConstraint(new isSeted(ESTAT0011,Segunda5));
+		addConstraint(new isSeted(ESTAT0011_2,Segunda6));
+		addConstraint(new isSeted(ESTAT0011_3,Segunda7));
+		addConstraint(new isSeted(ESTAT0011_4,Segunda8));
+		addConstraint(new isSeted(ESTAT0011_5,Quarta5));
+		addConstraint(new isSeted(ESTAT0011_6,Quarta6));
+		addConstraint(new isSeted(ESTAT0011_7,Quarta7));
+		addConstraint(new isSeted(ESTAT0011_8,Quarta8));
+		
+		
+		Variable COMP0415 = new Variable("COMP0415",0);
+		Variable COMP0415_2 = new Variable("COMP0415",1);
+		Variable COMP0415_3 = new Variable("COMP0415",2);
+		Variable COMP0415_4 = new Variable("COMP0415",3);
+		Variable COMP0415_5 = new Variable("COMP0415",5);
+		Variable COMP0415_6 = new Variable("COMP0415",6);
+		Variable COMP0415_7 = new Variable("COMP0415",7);
+		Variable COMP0415_8 = new Variable("COMP0415",8);
+		
+		addVariable(COMP0415);
+		addVariable(COMP0415_2);
+		addVariable(COMP0415_3);
+		addVariable(COMP0415_4);
+		addVariable(COMP0415_5);
+		addVariable(COMP0415_6);
+		addVariable(COMP0415_7);
+		addVariable(COMP0415_8);
+		
+		
+		addConstraint(new isSeted(COMP0415,Segunda9));
+		addConstraint(new isSeted(COMP0415_2,Segunda10));
+		addConstraint(new isSeted(COMP0415_3,Segunda11));
+		addConstraint(new isSeted(COMP0415_4,Segunda12));
+		addConstraint(new isSeted(COMP0415_5,Quarta9));
+		addConstraint(new isSeted(COMP0415_6,Quarta10));
+		addConstraint(new isSeted(COMP0415_7,Quarta11));
+		addConstraint(new isSeted(COMP0415_8,Quarta12));
+		
+		
+		Variable MAT0096 = new Variable("MAT0096",0);
+		Variable MAT0096_2 = new Variable("MAT0096",1);
+		Variable MAT0096_3 = new Variable("MAT0096",2);
+		Variable MAT0096_4 = new Variable("MAT0096",3);
+		Variable MAT0096_5 = new Variable("MAT0096",5);
+		Variable MAT0096_6 = new Variable("MAT0096",6);
+		Variable MAT0096_7 = new Variable("MAT0096",7);
+		Variable MAT0096_8 = new Variable("MAT0096",8);
+		
+		addVariable(MAT0096);
+		addVariable(MAT0096_2);
+		addVariable(MAT0096_3);
+		addVariable(MAT0096_4);
+		addVariable(MAT0096_5);
+		addVariable(MAT0096_6);
+		addVariable(MAT0096_7);
+		addVariable(MAT0096_8);
+		
+		
+		addConstraint(new isSeted(MAT0096,Terca1));
+		addConstraint(new isSeted(MAT0096_2,Terca2));
+		addConstraint(new isSeted(MAT0096_3,Terca3));
+		addConstraint(new isSeted(MAT0096_4,Terca4));
+		addConstraint(new isSeted(MAT0096_5,Quinta1));
+		addConstraint(new isSeted(MAT0096_6,Quinta2));
+		addConstraint(new isSeted(MAT0096_7,Quinta3));
+		addConstraint(new isSeted(MAT0096_8,Quinta4));
+		
+		
+		Variable COMP0409 = new Variable("COMP0409",0);
+		Variable COMP0409_2 = new Variable("COMP0409",1);
+		Variable COMP0409_3 = new Variable("COMP0409",2);
+		Variable COMP0409_4 = new Variable("COMP0409",3);
+		Variable COMP0409_5 = new Variable("COMP0409",5);
+		Variable COMP0409_6 = new Variable("COMP0409",6);
+		Variable COMP0409_7 = new Variable("COMP0409",7);
+		Variable COMP0409_8 = new Variable("COMP0409",8);
+		
+		addVariable(COMP0409);
+		addVariable(COMP0409_2);
+		addVariable(COMP0409_3);
+		addVariable(COMP0409_4);
+		addVariable(COMP0409_5);
+		addVariable(COMP0409_6);
+		addVariable(COMP0409_7);
+		addVariable(COMP0409_8);
+		
+		
+		addConstraint(new isSeted(COMP0409,Terca5));
+		addConstraint(new isSeted(COMP0409_2,Terca6));
+		addConstraint(new isSeted(COMP0409_3,Terca7));
+		addConstraint(new isSeted(COMP0409_4,Terca8));
+		addConstraint(new isSeted(COMP0409_5,Quinta5));
+		addConstraint(new isSeted(COMP0409_6,Quinta6));
+		addConstraint(new isSeted(COMP0409_7,Quinta7));
+		addConstraint(new isSeted(COMP0409_8,Quinta8));
+		
+		
+		Variable COMP0412 = new Variable("COMP0412",0);
+		Variable COMP0412_2 = new Variable("COMP0412",1);
+		Variable COMP0412_3 = new Variable("COMP0412",2);
+		Variable COMP0412_4 = new Variable("COMP0412",3);
+		Variable COMP0412_5 = new Variable("COMP0412",5);
+		Variable COMP0412_6 = new Variable("COMP0412",6);
+		Variable COMP0412_7 = new Variable("COMP0412",7);
+		Variable COMP0412_8 = new Variable("COMP0412",8);
+		
+		addVariable(COMP0412);
+		addVariable(COMP0412_2);
+		addVariable(COMP0412_3);
+		addVariable(COMP0412_4);
+		addVariable(COMP0412_5);
+		addVariable(COMP0412_6);
+		addVariable(COMP0412_7);
+		addVariable(COMP0412_8);
+		
+		
+		addConstraint(new isSeted(COMP0412,Terca9));
+		addConstraint(new isSeted(COMP0412_2,Terca10));
+		addConstraint(new isSeted(COMP0412_3,Terca11));
+		addConstraint(new isSeted(COMP0412_4,Terca12));
+		addConstraint(new isSeted(COMP0412_5,Quinta9));
+		addConstraint(new isSeted(COMP0412_6,Quinta10));
+		addConstraint(new isSeted(COMP0412_7,Quinta11));
+		addConstraint(new isSeted(COMP0412_8,Quinta12));
+		
+		
+		
+		Variable MAT0154 = new Variable("MAT0154",0);
+		Variable MAT0154_2 = new Variable("MAT0154",1);
+		Variable MAT0154_3 = new Variable("MAT0154",2);
+		Variable MAT0154_4 = new Variable("MAT0154",3);
+		Variable MAT0154_5 = new Variable("MAT0154",5);
+		Variable MAT0154_6 = new Variable("MAT0154",6);
+		Variable MAT0154_7 = new Variable("MAT0154",7);
+		Variable MAT0154_8 = new Variable("MAT0154",8);
+		
+		addVariable(MAT0154);
+		addVariable(MAT0154_2);
+		addVariable(MAT0154_3);
+		addVariable(MAT0154_4);
+		addVariable(MAT0154_5);
+		addVariable(MAT0154_6);
+		addVariable(MAT0154_7);
+		addVariable(MAT0154_8);
+		
+		
+		addConstraint(new isSeted(MAT0154,Quarta1));
+		addConstraint(new isSeted(MAT0154_2,Quarta2));
+		addConstraint(new isSeted(MAT0154_3,Quarta3));
+		addConstraint(new isSeted(MAT0154_4,Quarta4));
+		addConstraint(new isSeted(MAT0154_5,Sexta1));
+		addConstraint(new isSeted(MAT0154_6,Sexta2));
+		addConstraint(new isSeted(MAT0154_7,Sexta3));
+		addConstraint(new isSeted(MAT0154_8,Sexta4));
+		
+		
+		Variable COMP0417 = new Variable("COMP0417",0);
+		Variable COMP0417_2 = new Variable("COMP0417",1);
+		Variable COMP0417_3 = new Variable("COMP0417",2);
+		Variable COMP0417_4 = new Variable("COMP0417",3);
+		
+		addVariable(COMP0417);
+		addVariable(COMP0417_2);
+		addVariable(COMP0417_3);
+		addVariable(COMP0417_4);
+		
+		
+		
+		addConstraint(new isSeted(COMP0417,Sexta9));
+		addConstraint(new isSeted(COMP0417_2,Sexta10));
+		addConstraint(new isSeted(COMP0417_3,Sexta11));
+		addConstraint(new isSeted(COMP0417_4,Sexta12));
+		
+		horasDaSemana[0] = horasDaSemana[0] - 12;
+		horasDaSemana[1] = horasDaSemana[1] - 12;
+		horasDaSemana[2] = horasDaSemana[2] - 12;
+		horasDaSemana[3] = horasDaSemana[3] - 12;
+		horasDaSemana[4] = horasDaSemana[4] - 8;
+		
+		String[] ExistemOsBlocos = {"ELET0043", "ESTAT0011", "COMP0415","MAT0096", "COMP0409","COMP0412","MAT0154","COMP0417"};
+		VerificaOsBlocos(ExistemOsBlocos, blocos);
+	}
+	
+	
+	
 	
 	public void AddPIBITIouPIBIC(String escolhido, int[] ArrayHorarios) {
 		Variable aux;
@@ -479,6 +732,11 @@ public class MapSemana extends CSP<Variable, String> {
 				addVariable(Atividade);
 				addConstraint(new definidorDeDia(Atividade, var.getDia()) );
 				aux++;
+				
+				if(var.getDia() == 5) {
+					sabadoLivre = true;
+					
+				}
 			}
 			
 		}
@@ -509,6 +767,22 @@ public class MapSemana extends CSP<Variable, String> {
 			
 			}
 			
+		}
+	}
+	
+	
+	public void AddDescanso(ArrayList<Descanso> listaDescanso) {
+		Variable Atividade;
+		int count = 0;
+		for(Descanso var : listaDescanso) {
+			Atividade = new Variable(var.getName(), count);
+			addVariable(Atividade);
+			addConstraint(new SetDescanso(Atividade,var.getDia() , var.getHora() ));
+			count++;
+			horasDaSemana[var.getDia()]--;
+			if(var.getDia() == 5) {
+				sabadoLivre = true;
+			}
 		}
 	}
 	
@@ -548,7 +822,8 @@ public class MapSemana extends CSP<Variable, String> {
 	}
 	
 	
-	public MapSemana(int caso, int[] horariosPIBITI, int [] horariosPIBIC, ArrayList<AtividadesComp> atividades , int [] horariosEstagio, int[] horariosTrabalho, ArrayList<BlocoDeEstudo> BlocoDeEstudos) {
+	public MapSemana(int caso, int[] horariosPIBITI, int [] horariosPIBIC, ArrayList<AtividadesComp> atividades , int [] horariosEstagio, 
+			int[] horariosTrabalho, ArrayList<BlocoDeEstudo> BlocoDeEstudos, ArrayList<Descanso> listaDescanso) {
 		super(Arrays.asList());
 		
 		
@@ -573,15 +848,21 @@ public class MapSemana extends CSP<Variable, String> {
 		
 		switch(caso) {
 			case 1:
-				Caso1();
+				Caso1(BlocoDeEstudos);
 				break;
 			case 2:
-				Caso2();
+				Caso2(BlocoDeEstudos);
+				break;
+			case 3:
+				Caso3(BlocoDeEstudos);
 				break;
 			default:
 				System.out.println("[AVISO!!!]: Nenhuma aula foi instanciada :[AVISO!!!]");
 		}
 		
+		if(!listaDescanso.isEmpty()) {
+			AddDescanso(listaDescanso);
+		}
 		
 		if(horariosPIBITI.length > 0) {
 			AddPIBITIouPIBIC("PIBITI",horariosPIBITI);

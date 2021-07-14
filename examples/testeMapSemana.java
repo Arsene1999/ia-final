@@ -37,17 +37,24 @@ public class testeMapSemana {
 		//int[] horariosPIBIC = {4,4,4,4,4};
 		int[] horariosPIBIC = {};
 		int[] horariosEstagio = {};
-		int[] horariosTrabalho = {8,8,8,4,12,2};
+		//int[] horariosTrabalho = {8,8,8,4,12,2};
+		int[] horariosTrabalho = {};
 		ArrayList<AtividadesComp> atividades = new ArrayList<>();
-		atividades.add(new AtividadesComp("Palestra",0,3));
-		atividades.add(new AtividadesComp("Palestra",2,3));
-		atividades.add(new AtividadesComp("Voluntaria",1,3));
+		//atividades.add(new AtividadesComp("Palestra",0,3));
+		//atividades.add(new AtividadesComp("Palestra",2,3));
+		//atividades.add(new AtividadesComp("Voluntaria",1,3));
 		ArrayList<BlocoDeEstudo> blocos = new ArrayList<>();
-		blocos.add(new BlocoDeEstudo("COMP408",3));
-		blocos.add(new BlocoDeEstudo("COMP455",3));
-		blocos.add(new BlocoDeEstudo("COMP481",3));
+		blocos.add(new BlocoDeEstudo("COMP0408",3));
+		blocos.add(new BlocoDeEstudo("COMP0455",3));
+		blocos.add(new BlocoDeEstudo("COMP0481",3));
 		
-		CSP<Variable, String> cspdia = new MapSemana(caso, horariosPIBITI, horariosPIBIC, atividades,horariosEstagio,horariosTrabalho, blocos);
+		ArrayList<Descanso> descanso = new ArrayList<>();
+		descanso.add(new Descanso("Descanso",0,9));
+		descanso.add(new Descanso("Descanso",1,9));
+		descanso.add(new Descanso("Descanso",2,9));
+		descanso.add(new Descanso("Descanso",3,9));
+		descanso.add(new Descanso("Descanso",4,9));
+		CSP<Variable, String> cspdia = new MapSemana(caso, horariosPIBITI, horariosPIBIC, atividades,horariosEstagio,horariosTrabalho, blocos,descanso);
 		
 		solution = solver.solve(cspdia);
 		//solution.ifPresent(System.out::println);
