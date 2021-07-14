@@ -23,4 +23,8 @@ public class Resposta {
 	public int getTempo() {
 		return momento;
 	}
+	
+	public void setName(String name){
+		this.name = name;
+	}
 }

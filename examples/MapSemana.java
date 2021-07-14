@@ -21,12 +21,7 @@ import aima.core.search.csp.Variable;
  */
 public class MapSemana extends CSP<Variable, String> {
 	public int[] horasDaSemana = {20,20,20,20,20,20};
-	public int BlocosSegunda = 20;
-	public int BlocosTerca = 20;
-	public int BlocosQuarta = 20;
-	public int BlocosQuinta = 20;
-	public int BlocosSexta = 20;
-	
+	public boolean sabadoLivre = false;
 	public static final Variable TRABALHO_1 = new Variable("TRABALHO", 0);
 	public static final Variable TRABALHO_2 = new Variable("TRABALHO", 1);
 	public static final Variable TRABALHO_3 = new Variable("TRABALHO", 2);
@@ -273,11 +268,6 @@ public class MapSemana extends CSP<Variable, String> {
 		//System.out.println(Quinta16 + " " + Quinta16.getDia() + " " + Quinta16.getHorario() +" "+ Quinta16.getName());
 		addConstraint(new isSeted(COMP0481_4,Quinta16));
 		
-		BlocosSegunda = BlocosSegunda - 4;
-		BlocosTerca = BlocosTerca - 4;
-		BlocosQuarta = BlocosQuarta - 4;
-		BlocosQuinta = BlocosQuinta - 8;
-		
 		horasDaSemana[0] = horasDaSemana[0] - 4;
 		horasDaSemana[1] = horasDaSemana[1] - 4;
 		horasDaSemana[2] = horasDaSemana[2] - 4;
@@ -429,13 +419,6 @@ public class MapSemana extends CSP<Variable, String> {
 		addConstraint(new isSeted(COMP0438_7,Sexta7));
 		addConstraint(new isSeted(COMP0438_8,Sexta8));
 		
-		
-		BlocosSegunda = BlocosSegunda - 12;
-		BlocosTerca = BlocosTerca - 4;
-		BlocosQuarta = BlocosQuarta - 12;
-		BlocosQuinta = BlocosQuinta - 4;
-		BlocosSexta = BlocosSexta - 8;
-		
 	}
 	
 	public void AddPIBITIouPIBIC(String escolhido, int[] ArrayHorarios) {
@@ -475,6 +458,9 @@ public class MapSemana extends CSP<Variable, String> {
 				addConstraint(new definidorDeDia(aux,i));
 				horasDaSemana[i]--;
 				cont++;
+				if(i == 5 ) {
+					sabadoLivre = true;
+				}
 			}
 		}
 
@@ -497,6 +483,33 @@ public class MapSemana extends CSP<Variable, String> {
 			
 		}
 		
+	}
+	
+	public void AddBlocoDeEstudo(ArrayList<BlocoDeEstudo> blocos) {
+		Variable Atividade;
+		int count = 0;
+		for(BlocoDeEstudo var : blocos) {
+			boolean colocado = false;
+			int tempoRequisitado = var.getTempo();
+			for(int i = 0; i < horasDaSemana.length; i++) {
+				if(horasDaSemana[i] - tempoRequisitado >= 0 && colocado == false) {
+					horasDaSemana[i] = horasDaSemana[i] - tempoRequisitado;
+					for(int j = 0; j < tempoRequisitado; j++) {
+						Atividade = new Variable(var.getName(), count);
+						addVariable(Atividade);
+						addConstraint(new definidorDeDia(Atividade, i) );
+						count++;
+						colocado = true;
+					}
+					
+				if(i == 5) {
+					sabadoLivre = true;
+				}
+				}
+			
+			}
+			
+		}
 	}
 	
 	//TESTE define o dia em que deve ser colocado a variavel
@@ -535,7 +548,7 @@ public class MapSemana extends CSP<Variable, String> {
 	}
 	
 	
-	public MapSemana(int[] horariosPIBITI, int [] horariosPIBIC, ArrayList<AtividadesComp> atividades , int [] horariosEstagio, int[] horariosTrabalho, ArrayList<AtividadesComp> BlocoDeEstudos) {
+	public MapSemana(int caso, int[] horariosPIBITI, int [] horariosPIBIC, ArrayList<AtividadesComp> atividades , int [] horariosEstagio, int[] horariosTrabalho, ArrayList<BlocoDeEstudo> BlocoDeEstudos) {
 		super(Arrays.asList());
 		
 		
@@ -558,9 +571,17 @@ public class MapSemana extends CSP<Variable, String> {
 				Sabado1,Sabado2,Sabado3,Sabado4,Sabado5,Sabado6,Sabado7,Sabado8,Sabado9,
 				Sabado10,Sabado11,Sabado12,Sabado13,Sabado14,Sabado15,Sabado16,Sabado17,Sabado18,Sabado19,Sabado20);
 		
+		switch(caso) {
+			case 1:
+				Caso1();
+				break;
+			case 2:
+				Caso2();
+				break;
+			default:
+				System.out.println("[AVISO!!!]: Nenhuma aula foi instanciada :[AVISO!!!]");
+		}
 		
-		Caso1();
-		//Caso2();
 		
 		if(horariosPIBITI.length > 0) {
 			AddPIBITIouPIBIC("PIBITI",horariosPIBITI);
@@ -584,12 +605,17 @@ public class MapSemana extends CSP<Variable, String> {
 			AddAtividadeComplementar(atividades);
 		}
 		
+		if(!BlocoDeEstudos.isEmpty()) {
+			AddBlocoDeEstudo(BlocoDeEstudos);
+		}
+		System.out.println(horasDaSemana[0] +" "+horasDaSemana[1] +" "+horasDaSemana[2] +" "+horasDaSemana[3] +" "+horasDaSemana[4] +" " + horasDaSemana[5] +" ");
+		
 		for (Variable var : getVariables()) {
-			addConstraint(new sabadoTaOK(var,true));
+			addConstraint(new sabadoTaOK(var,sabadoLivre));
 			setDomain(var, colors);
 		}
 		
-		System.out.println(horasDaSemana[0] +" "+horasDaSemana[1] +" "+horasDaSemana[2] +" "+horasDaSemana[3] +" "+horasDaSemana[4] +" " + horasDaSemana[5] +" ");
+		
 		
 	   RestricaoBase();//Adiciona as restrições base do MapSemana
 	   //System.out.println(getVariables());

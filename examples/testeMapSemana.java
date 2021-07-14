@@ -29,6 +29,7 @@ public class testeMapSemana {
 		
 		System.out.println("====================Testes para o Exemplo1====================");
 		solver = new FlexibleBacktrackingSolver<Variable, String>().set(CspHeuristics.mrvDeg()).set(new ForwardCheckingStrategy<>());
+		int caso = 1;
 		//solver = new FlexibleBacktrackingSolver<Variable, String>().set(CspHeuristics.mrvDeg());
 		//solver = new FlexibleBacktrackingSolver<>();
 		int[] horariosPIBITI = {};
@@ -41,13 +42,16 @@ public class testeMapSemana {
 		atividades.add(new AtividadesComp("Palestra",0,3));
 		atividades.add(new AtividadesComp("Palestra",2,3));
 		atividades.add(new AtividadesComp("Voluntaria",1,3));
-		ArrayList<AtividadesComp> BlocoDeEstudos = new ArrayList<>();
-		CSP<Variable, String> cspdia = new MapSemana(horariosPIBITI, horariosPIBIC, atividades,horariosEstagio,horariosTrabalho, BlocoDeEstudos);
+		ArrayList<BlocoDeEstudo> blocos = new ArrayList<>();
+		blocos.add(new BlocoDeEstudo("COMP408",3));
+		blocos.add(new BlocoDeEstudo("COMP455",3));
+		blocos.add(new BlocoDeEstudo("COMP481",3));
+		
+		CSP<Variable, String> cspdia = new MapSemana(caso, horariosPIBITI, horariosPIBIC, atividades,horariosEstagio,horariosTrabalho, blocos);
 		
 		solution = solver.solve(cspdia);
-		solution.ifPresent(System.out::println);
+		//solution.ifPresent(System.out::println);
 		
-		System.out.println();
 		ArrayList<Resposta> res = solution.get().RetornaOMapa();
 		Resposta[][] tabela = new Resposta[6][20];
 		for(Resposta var : res) {
