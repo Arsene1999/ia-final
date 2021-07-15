@@ -7,21 +7,15 @@ import aima.core.search.csp.CSP;
 import aima.core.search.csp.Domain;
 import aima.core.search.csp.Variable;
 
-
-
-/**
- * Artificial Intelligence A Modern Approach (3rd Ed.): Figure 6.1, Page 204.<br>
- * <br>
- * The principal states and territories of Australia. Coloring this map can be
- * viewed as a constraint satisfaction problem (CSP). The goal is to assign
- * colors to each region so that no neighboring regions have the same color.
- * 
- * @author Ruediger Lunde
- * @author Mike Stampone
- */
+/*
+ * Essa é a classe onde o código monta o problema a ser resolvido 
+ * */
 public class MapSemana extends CSP<Variable, String> {
-	public int[] horasDaSemana = {20,20,20,20,20,20};
-	public boolean sabadoLivre = false;
+	
+	public int[] horasDaSemana = {20,20,20,20,20,20};//Mantem o controle sobre as horas da semana utilizadas
+	public boolean sabadoLivre = false; // Variável para manter o controle se o sabado pode ou não ser utilizado
+	
+	//Declaração das variáveis presentes no Dominio
 	public static final Variable TRABALHO_1 = new Variable("TRABALHO", 0);
 	public static final Variable TRABALHO_2 = new Variable("TRABALHO", 1);
 	public static final Variable TRABALHO_3 = new Variable("TRABALHO", 2);
@@ -193,6 +187,14 @@ public class MapSemana extends CSP<Variable, String> {
 	public static final horaDia Sabado19 = new horaDia(5,18);
 	public static final horaDia Sabado20 = new horaDia(5,19);
 	
+	
+	/*
+	 * Essa função é responsável por saber se cada tipo de aula tem
+	 * pelo menos um bloco de estudo comrespodente
+	 * A função recebe um Array de Strings contendo as aulas a serem verificadas
+	 * e um ArrayList contendo os blocos de estudo a serem cadastrados
+	 * Não retorna nada
+	 * */
 	public void VerificaOsBlocos(String[] ExistemOsBlocos,ArrayList<BlocoDeEstudo> blocos) {
 		boolean existe = false;
 		for(int i = 0; i < ExistemOsBlocos.length; i++) {
@@ -209,7 +211,14 @@ public class MapSemana extends CSP<Variable, String> {
 			}
 		}
 	}
-	
+	/*
+	 * Declaração do Caso1 proposto pelo professor 
+	 * Ele coloca as variáveis e dentro da lista e a ser utilizada
+	 * faz o controle do tempo gasto pelo caso e é responsável por 
+	 * requisitar a verificação dos blocos de estudo
+	 * Recebe um ArrayList contendo os blocos de estudo
+	 * Não retorna nada
+	 * */
 	public void Caso1( ArrayList<BlocoDeEstudo> blocos) {
 		Variable COMP0408 = new Variable("COMP0408",0);
 		Variable COMP0408_2 = new Variable("COMP0408",1);
@@ -296,7 +305,14 @@ public class MapSemana extends CSP<Variable, String> {
 		
 	}
 
-	
+	/*
+	 * Declaração do Caso2 proposto pelo professor 
+	 * Ele coloca as variáveis e dentro da lista e a ser utilizada
+	 * faz o controle do tempo gasto pelo caso e é responsável por 
+	 * requisitar a verificação dos blocos de estudo
+	 * Recebe um ArrayList contendo os blocos de estudo
+	 * Não retorna nada
+	 * */
 	public void Caso2(ArrayList<BlocoDeEstudo> blocos) {
 		Variable COMP0408 = new Variable("COMP0408",0);
 		Variable COMP0408_2 = new Variable("COMP0408",1);
@@ -452,6 +468,14 @@ public class MapSemana extends CSP<Variable, String> {
 		
 	}
 	
+	/*
+	 * Declaração do Caso1 proposto pelo professor 
+	 * Ele coloca as variáveis e dentro da lista e a ser utilizada
+	 * faz o controle do tempo gasto pelo caso e é responsável por 
+	 * requisitar a verificação dos blocos de estudo
+	 * Recebe um ArrayList contendo os blocos de estudo
+	 * Não retorna nada
+	 * */
 	public void Caso3(ArrayList<BlocoDeEstudo> blocos) {
 		Variable ELET0043 = new Variable("ELET0043",0);
 		Variable ELET0043_2 = new Variable("ELET0043",1);
@@ -673,12 +697,21 @@ public class MapSemana extends CSP<Variable, String> {
 	
 	
 	
-	
+	/*
+	 * Realiza a adição das variáveis de PIBIBiT e PIBIC 
+	 * por dia de maneira que tem que suprir a carga horaria 
+	 * semanal de 20horas
+	 * A função recebe uma String dizendo o nome PIBITI ou PIBIC 
+	 * para saber qual adicionar e um Array de inteiros contedo
+	 * a quantidade de horas por dia 
+	 * idealmente um array contendo 5 posições mas que pode 
+	 * variar para menos pois cada posição representa um dia 
+	 * Não retorna nada
+	 * */
 	public void AddPIBITIouPIBIC(String escolhido, int[] ArrayHorarios) {
 		Variable aux;
 		int cont = 0;
-		int auxTotal = 0;
-		
+		int auxTotal = 0;	
 		System.out.println(escolhido);
 		for(int i=0; i < 40; i++) {
 			aux = new Variable(escolhido, i);
@@ -691,16 +724,27 @@ public class MapSemana extends CSP<Variable, String> {
 				if(ArrayHorarios[cont] == 0 && cont < ArrayHorarios.length -1) {
 					cont++;
 				}
-			}
-			//System.out.println(escolhido +"  "+i);
+			}	
 		}
-		//System.out.println(getVariables());
 		if(auxTotal != 40 || ArrayHorarios[ArrayHorarios.length -1] != 0) {
 			System.out.print("[ERRO]: Tempo de "+ escolhido +" escolhido apresenta erro:[ERRO]");
 			System.exit(0);
 		}
 	}
 	
+	/*
+	 * Realiza a adição das variáveis de Trabalho e Estagio 
+	 * por dia de maneira que tem que suprir a carga horaria 
+	 * semanal de 20horas
+	 * A função recebe uma String dizendo o nome PIBITI ou PIBIC 
+	 * para saber qual adicionar e um Array de inteiros contedo
+	 * a quantidade de horas por dia 
+	 * idealmente um array contendo 5 posições mas que pode 
+	 * variar para menos ou mais pois cada posição representa um dia
+	 * e na concepção de quem escreveu o código estagios e trabalhos 
+	 * podem acontecer no sábados 
+	 * Não retorna nada
+	 * */
 	public void AddTrabalhoouEstagio(String escolhido, int[] ArrayHorarios) {
 		Variable aux;
 		int cont = 0;
@@ -720,14 +764,17 @@ public class MapSemana extends CSP<Variable, String> {
 		
 	}
 	
-	//Adiciona as atividades Complementares colocando um dia como objetivo
+	/*
+	 * Adiciona o bloco de atividades complementares por dia
+	 * Recebe um ArrayList de Atividades Complementares
+	 * Não retorna nada 
+	 * */
 	public void AddAtividadeComplementar(ArrayList<AtividadesComp> atividades) {
 		Variable Atividade;
 		int aux = 0;//variavel para ajudar com o problema do nome
 		for(AtividadesComp var : atividades) {
 			var.CalculaReducaoDeTempo(horasDaSemana);
 			for(int tempo = var.getTempo(); tempo > 0; tempo--) {
-				//System.out.println(var.getName() +" "+ var.getDia() + " " + tempo);
 				Atividade = new Variable(var.getName(), aux);
 				addVariable(Atividade);
 				addConstraint(new definidorDeDia(Atividade, var.getDia()) );
@@ -743,6 +790,15 @@ public class MapSemana extends CSP<Variable, String> {
 		
 	}
 	
+	
+	/*
+	 * Adiciona os blocos de estudo 
+	 * essa função verifica as horas disponíveis por dia 
+	 * e tenta encaixar o bloco de estudo em algum dia 
+	 * que haja horas disponíveis o suficiente
+	 * Recebe um ArrayList de Blocos de Estudo
+	 * Não retorna nada 
+	 * */
 	public void AddBlocoDeEstudo(ArrayList<BlocoDeEstudo> blocos) {
 		Variable Atividade;
 		int count = 0;
@@ -771,6 +827,14 @@ public class MapSemana extends CSP<Variable, String> {
 	}
 	
 	
+	/*
+	 * Adiciona variaveis especificas em momentos específcos da tabela 
+	 * funciona parecido como a definição de um dia, gera restrições de 30min na tabela
+	 * Recebe um ArrayList de Descanso
+	 * Não retorna nada
+	 * OBS: Descanso foi colocado como nome para representar isso mas a verdade
+	 * é que esse nome poderia ser qualquer coisa
+	 * */
 	public void AddDescanso(ArrayList<Descanso> listaDescanso) {
 		Variable Atividade;
 		int count = 0;
@@ -786,23 +850,6 @@ public class MapSemana extends CSP<Variable, String> {
 		}
 	}
 	
-	//TESTE define o dia em que deve ser colocado a variavel
-	public void AgregadorRestrictDia(int[] ArrayHorarios, String alvo) {
-		int dia = 0; 
-		int cont = 0;
-		for(Variable var : getVariables()){
-			 
-			if(var.getName().equals(alvo) && dia < ArrayHorarios.length) {
-				 addConstraint(new definidorDeDia(var,dia));
-				 ArrayHorarios[dia]--;
-				 System.out.println(var.getName() +"  "+ ArrayHorarios[dia]);
-				 if(ArrayHorarios[dia] == 0) {
-					 dia++;
-				 }
-			 }
-		 }
-		//System.out.println("CONTA " + cont + "zeros"+ArrayHorarios[4]);
-	}
 	
 	//Não recebe nenhuma entrada
 	//Define que cada varivel deve ter um dominio diferente
@@ -821,7 +868,19 @@ public class MapSemana extends CSP<Variable, String> {
 				}
 	}
 	
-	
+	/*
+	 * Função responsável por instanciar todo o projeto
+	 * Recebe
+	 * caso : inteiro contendo o valor referente a um dos casos de aulas informados pelo professor
+	 * horariosPIBITI: Array dos dias da semana com cada inteiro fazendo referencia a um dia PIBITI
+	 * horariosPIBIC: Array dos dias da semana com cada inteiro fazendo referencia a um dia PIBIC
+	 * atividades: Lista de atividades a serem instanciadas
+	 * horariosEstagio : Array dos dias da semana com cada inteiro fazendo referencia a um dia Estagio
+	 * horariosTrabalho : Array dos dias da semana com cada inteiro fazendo referencia a um dia Trabalho
+	 * BlocoDeEstudos: Lista de blocos de estudo a serem instanciadas
+	 * listaDescanso: Lista de horarios marcados a serem instanciadas
+	 * Não retorna nada
+	 * */
 	public MapSemana(int caso, int[] horariosPIBITI, int [] horariosPIBIC, ArrayList<AtividadesComp> atividades , int [] horariosEstagio, 
 			int[] horariosTrabalho, ArrayList<BlocoDeEstudo> BlocoDeEstudos, ArrayList<Descanso> listaDescanso) {
 		super(Arrays.asList());
@@ -846,6 +905,7 @@ public class MapSemana extends CSP<Variable, String> {
 				Sabado1,Sabado2,Sabado3,Sabado4,Sabado5,Sabado6,Sabado7,Sabado8,Sabado9,
 				Sabado10,Sabado11,Sabado12,Sabado13,Sabado14,Sabado15,Sabado16,Sabado17,Sabado18,Sabado19,Sabado20);
 		
+		//Verifica qual caso a ser escolhido para usar 
 		switch(caso) {
 			case 1:
 				Caso1(BlocoDeEstudos);
@@ -860,6 +920,8 @@ public class MapSemana extends CSP<Variable, String> {
 				System.out.println("[AVISO!!!]: Nenhuma aula foi instanciada :[AVISO!!!]");
 		}
 		
+		//Esses ifs realizam a verificação de se cada
+		//parte da tabela está ou não instanciada
 		if(!listaDescanso.isEmpty()) {
 			AddDescanso(listaDescanso);
 		}
@@ -869,16 +931,13 @@ public class MapSemana extends CSP<Variable, String> {
 		}
 		if(horariosPIBIC.length > 0) {
 			AddPIBITIouPIBIC("PIBIC",horariosPIBIC);
-	
 		}
 		
 		if(horariosEstagio.length > 0) {
 			AddTrabalhoouEstagio("Estagio",horariosEstagio);
-			//AgregadorRestrictDia(horariosPIBITI,"PIBITI");
 		}
 		if(horariosTrabalho.length > 0) {
 			AddTrabalhoouEstagio("Trabalho",horariosTrabalho);
-			//AgregadorRestrictDia(horariosPIBIC,"PIBIC");
 		}
 		
 		if(!atividades.isEmpty()) {
@@ -888,6 +947,7 @@ public class MapSemana extends CSP<Variable, String> {
 		if(!BlocoDeEstudos.isEmpty()) {
 			AddBlocoDeEstudo(BlocoDeEstudos);
 		}
+		System.out.print("Printa a quantidade de horas disponíveis presente em cada dia: ");
 		System.out.println(horasDaSemana[0] +" "+horasDaSemana[1] +" "+horasDaSemana[2] +" "+horasDaSemana[3] +" "+horasDaSemana[4] +" " + horasDaSemana[5] +" ");
 		
 		for (Variable var : getVariables()) {
@@ -895,10 +955,7 @@ public class MapSemana extends CSP<Variable, String> {
 			setDomain(var, colors);
 		}
 		
-		
-		
 	   RestricaoBase();//Adiciona as restrições base do MapSemana
-	   //System.out.println(getVariables());
 	}
 
 	
