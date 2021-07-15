@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Queue;
 
 import aima.core.search.csp.*;
+import aima.core.search.csp.examples.horaDia;
 import aima.core.search.framework.QueueFactory;
 
 /**
@@ -69,7 +70,7 @@ public class AC3Strategy<VAR extends Variable, VAL> implements InferenceStrategy
 	 */
 	public InferenceLog<VAR, VAL> apply(CSP<VAR, VAL> csp, Assignment<VAR, VAL> assignment, VAR var) {
 		Domain<VAL> domain = csp.getDomain(var);
-		VAL value = assignment.getValue(var);
+		horaDia value = (horaDia) assignment.getValue(var);
 		assert domain.contains(value);
 		DomainLog<VAR, VAL> log = new DomainLog<>();
 		if (domain.size() > 1) {
@@ -109,14 +110,14 @@ public class AC3Strategy<VAR extends Variable, VAL> implements InferenceStrategy
 	private boolean revise(VAR xi, VAR xj, Constraint<VAR, VAL> constraint,
 			CSP<VAR, VAL> csp, DomainLog<VAR, VAL> log) {
 		Domain<VAL> currDomain = csp.getDomain(xi);
-		List<VAL> newValues = new ArrayList<>(currDomain.size());
+		List<horaDia> newValues = new ArrayList<>(currDomain.size());
 		Assignment<VAR, VAL> assignment = new Assignment<>();
 		for (VAL vi : currDomain) {
 			assignment.add(xi, vi);
 			for (VAL vj : csp.getDomain(xj)) {
 				assignment.add(xj, vj);
 				if (constraint.isSatisfiedWith(assignment)) {
-					newValues.add(vi);
+					newValues.add((horaDia) vi);
 					break;
 				}
 			}

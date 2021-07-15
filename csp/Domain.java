@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import aima.core.search.csp.examples.horaDia;
 import aima.core.util.ArrayIterator;
 
 /**
@@ -41,7 +42,7 @@ public class Domain<VAL> implements Iterable<VAL> {
 		return values.length == 0;
 	}
 
-	public boolean contains(VAL value) {
+	public boolean contains(horaDia value) {
 		for (Object v : values)
 			if (value.equals(v))
 				return true;

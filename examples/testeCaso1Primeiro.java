@@ -6,9 +6,14 @@ import java.util.Optional;
 import aima.core.search.csp.Assignment;
 import aima.core.search.csp.CSP;
 import aima.core.search.csp.Variable;
+import aima.core.search.csp.solver.BackjumpingBacktrackingSolver;
 import aima.core.search.csp.solver.CspHeuristics;
+import aima.core.search.csp.solver.CspListener;
 import aima.core.search.csp.solver.CspSolver;
 import aima.core.search.csp.solver.FlexibleBacktrackingSolver;
+import aima.core.search.csp.solver.MinConflictsSolver;
+import aima.core.search.csp.solver.TreeCspSolver;
+import aima.core.search.csp.solver.inference.AC3Strategy;
 import aima.core.search.csp.solver.inference.ForwardCheckingStrategy;
 
 
@@ -19,7 +24,7 @@ public class testeCaso1Primeiro {
 		Optional<Assignment<Variable, String>> solution;
 		System.out.println("Tabela da Semana Caso1 1");
 		System.out.println("====================Testes para o Exemplo1====================");
-		solver = new FlexibleBacktrackingSolver<Variable, String>().set(CspHeuristics.mrvDeg()).set(new ForwardCheckingStrategy<>());
+	
 		int caso = 1;
 		int[] horariosPIBITI = {8,8,8,8,8};
 		int[] horariosPIBIC = {};
@@ -43,10 +48,15 @@ public class testeCaso1Primeiro {
 		descanso.add(new Descanso("Descanso",3,9));
 		descanso.add(new Descanso("Descanso",4,9));
 		CSP<Variable, String> cspdia = new MapSemana(caso, horariosPIBITI, horariosPIBIC, atividades,horariosEstagio,horariosTrabalho, blocos,descanso);
+		solver = new FlexibleBacktrackingSolver<Variable, String>().set(CspHeuristics.mrvDeg()).set(new ForwardCheckingStrategy<>());
 		
-		solution = solver.solve(cspdia);
-		ArrayList<Resposta> res = solution.get().RetornaOMapa();
-		new PrintTabela(res);
+		
+		
+		
+		new TestaDeTudo( cspdia);
+		
+		
+		
 	}
 
 }
