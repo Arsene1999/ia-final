@@ -8,9 +8,10 @@ import aima.core.search.csp.Constraint;
 import aima.core.search.csp.Variable;
 
 /**
- * Represents a binary constraint which forbids equal values.
- * 
- * @author Ruediger Lunde
+ * Representa uma função binaria que no codigo da gente que está sendo utilizado
+ * para garantir a que não haja variáveis com um mesmo dominio 
+ * Ta sendo aplicado a todos 
+ * Recebe duas variáveis
  */
 public class DiffNotEqualConstraint implements Constraint<Variable, Integer> {
 

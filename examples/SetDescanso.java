@@ -7,7 +7,12 @@ import aima.core.search.csp.Assignment;
 import aima.core.search.csp.Constraint;
 import aima.core.search.csp.Variable;
 
-
+/*
+ *Restrição utilizada para setar um dominio especifico a uma variavel 
+ * Recebe uma Variavel e dois inteiros referentes a posição na tabela
+ * Satisfeito se o dominio  assinaldo a variável possui os dois inteiros 
+ * em suas posições específicas
+ * */
 public class SetDescanso<VAR extends Variable, VAL> implements Constraint<VAR, horaDia> {
 
 	private VAR var1;

@@ -7,7 +7,15 @@ import aima.core.search.csp.Assignment;
 import aima.core.search.csp.Constraint;
 import aima.core.search.csp.Variable;
 
-
+/*
+ * Restrição utilizada para afirmar 
+ * se uma variavel pode utilizar o sabado ou não.
+ * Recebe uma variavel e um booleano para
+ * poder verificar se a variavel ocupa ou não um sabado
+ * caso ocupe verifica se pode  fazer isso 
+ * se sim retorna, 
+ * se não retorna não.
+ * */
 public class sabadoTaOK<VAR extends Variable, VAL> implements Constraint<VAR, horaDia> {
 
 	private VAR var1;

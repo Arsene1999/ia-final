@@ -7,6 +7,13 @@ import aima.core.search.csp.Assignment;
 import aima.core.search.csp.Constraint;
 import aima.core.search.csp.Variable;
 
+/*
+ * Restrição aplicada a todo o dominio para 
+ * verificar se existe PIBITI e PIBIC instanciados na tabela 
+ * se existir os dois ao mesmo tempo retorna false 
+ * se acontecer de não ter nenhum ou só um então retorna true
+ * */
+
 public class pibicOUpibiti<VAR extends Variable, VAL> implements Constraint<VAR, horaDia> {
 
 	private VAR var1;

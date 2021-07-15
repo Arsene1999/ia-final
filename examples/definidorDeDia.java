@@ -8,6 +8,14 @@ import aima.core.search.csp.Assignment;
 import aima.core.search.csp.Constraint;
 import aima.core.search.csp.Variable;
 
+/*
+ * Restrição responsável por definir o dia em que 
+ * uma determinada atividade deve acontecer
+ * Recebe uma Variavel e um inteiro referente ao dia
+ * A condição se torna bem sucedida se o dia 
+ * definido para a Varíavel é igual ao dia definido na
+ * inicialização da restrição
+ * */
 public class definidorDeDia<VAR extends Variable, VAL> implements Constraint<VAR, horaDia> {
 
 	private VAR var1;

@@ -1,5 +1,8 @@
 package aima.core.search.csp.examples;
-
+/*
+ * Classe usada para instanciar as Atividades Complementares
+ * contendo nome , dia e tempo(ou duração da atividade)
+ * */
 public class AtividadesComp {
 	private String name;
 	private int dia;
@@ -24,6 +27,12 @@ public class AtividadesComp {
 		return tempo;
 	}
 	
+	/*
+	 * Recebe um array de inteiros com quantidade de horas da semana
+	 * Verifica se no dia a ser alocado a horas o suficiente disponíveis
+	 * Caso tenha horas o suficiente retorna as horasDaSemana com o tempo reduzido
+	 * Caso não haja o codigo para a execução e da o erro
+	 * */
 	public int[] CalculaReducaoDeTempo(int[] horasDaSemana) {
 		horasDaSemana[dia] = horasDaSemana[dia] - tempo;
 		if(horasDaSemana[dia] < 0) {

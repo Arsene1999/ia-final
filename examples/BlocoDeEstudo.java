@@ -1,5 +1,14 @@
 package aima.core.search.csp.examples;
 
+/*
+ * Classe para definir o bloco de estudo 
+ * contem o name que é o nome mais o 
+ * Est para identifacar que é um bloco de estudo
+ * contem tbm o Tempo que representa o tamanho do 
+ * bloco de estudo por dia
+ * e ref que é simplesmente o nome da aula a
+ * qual o bloco faz referencia
+ * */
 public class BlocoDeEstudo {
 	private String name;
 	private String ref;

@@ -1,5 +1,9 @@
 package aima.core.search.csp.examples;
-
+/*
+ * Classe utilizada para definir o dia e a hora de cada horário
+ * disponível na tabela semanal
+ * Recebe um dia e uma hora referente a ao dominio especificado
+ * */
 public class horaDia {
 	public int dia;
 	public int horario;

@@ -2,6 +2,11 @@ package aima.core.search.csp.examples;
 
 import java.util.ArrayList;
 
+/*
+ * Função utilizada para printar o resultado em uma tabela
+ * de maneira bonita recebe um ArrayList de Resposta e 
+ * não retorna nada  
+ * */
 public class PrintTabela {
 	public static final String ANSI_RESET = "\u001B[0m";
 	public static final String ANSI_RED = "\u001B[31m";
