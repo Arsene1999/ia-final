@@ -63,8 +63,7 @@ public class testeCaso24 {
 		solution = solver.solve(cspdia);
 		//solution.ifPresent(System.out::println);
 		
-		ArrayList<Resposta> res = solution.get().RetornaOMapa();
-		new PrintTabela(res);
+		new TestaDeTudo( cspdia);
 	}
 
 }

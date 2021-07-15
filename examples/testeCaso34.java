@@ -32,19 +32,11 @@ public class testeCaso34 {
 		System.out.println("====================Testes para o Exemplo1====================");
 		solver = new FlexibleBacktrackingSolver<Variable, String>().set(CspHeuristics.mrvDeg()).set(new ForwardCheckingStrategy<>());
 		int caso = 3;
-		//solver = new FlexibleBacktrackingSolver<Variable, String>().set(CspHeuristics.mrvDeg());
-		//solver = new FlexibleBacktrackingSolver<>();
 		int[] horariosPIBITI = {};
-		//int[] horariosPIBITI = {8,8,8,8,8};
-		//int[] horariosPIBIC = {4,4,4,4,4};
 		int[] horariosPIBIC = {};
 		int[] horariosEstagio = {};
-		//int[] horariosTrabalho = {8,8,2,4,12,2};
 		int[] horariosTrabalho = {0,0,4,4,4,0};
 		ArrayList<AtividadesComp> atividades = new ArrayList<>();
-		//atividades.add(new AtividadesComp("Palestra",0,3));
-		//atividades.add(new AtividadesComp("Palestra",2,3));
-		//atividades.add(new AtividadesComp("Voluntaria",1,3));
 		ArrayList<BlocoDeEstudo> blocos = new ArrayList<>();
 		blocos.add(new BlocoDeEstudo("COMP0412",1));
 		blocos.add(new BlocoDeEstudo("COMP0415",2));
@@ -63,11 +55,7 @@ public class testeCaso34 {
 		
 		CSP<Variable, String> cspdia = new MapSemana(caso, horariosPIBITI, horariosPIBIC, atividades,horariosEstagio,horariosTrabalho, blocos,descanso);
 		
-		solution = solver.solve(cspdia);
-		//solution.ifPresent(System.out::println);
-		
-		ArrayList<Resposta> res = solution.get().RetornaOMapa();
-		new PrintTabela(res);
+		new TestaDeTudo( cspdia);
 	}
 
 }

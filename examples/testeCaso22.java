@@ -60,12 +60,7 @@ public class testeCaso22 {
 		descanso.add(new Descanso("Descanso",4,16));
 		CSP<Variable, String> cspdia = new MapSemana(caso, horariosPIBITI, horariosPIBIC, atividades,horariosEstagio,horariosTrabalho, blocos,descanso);
 		
-		solution = solver.solve(cspdia);
-		//solution.ifPresent(System.out::println);
-		
-		
-		ArrayList<Resposta> res = solution.get().RetornaOMapa();
-		new PrintTabela(res);
+		new TestaDeTudo( cspdia);
 	}
 
 }

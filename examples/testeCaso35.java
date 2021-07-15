@@ -17,23 +17,14 @@ public class testeCaso35 {
 		CspSolver<Variable, String> solver;
 		Optional<Assignment<Variable, String>> solution;
 		
-		
 		System.out.println("Tabela da Semana");
-		
-		
-		
 		
 		System.out.println("====================Testes para o Exemplo1====================");
 		solver = new FlexibleBacktrackingSolver<Variable, String>().set(CspHeuristics.mrvDeg()).set(new ForwardCheckingStrategy<>());
 		int caso = 3;
-		//solver = new FlexibleBacktrackingSolver<Variable, String>().set(CspHeuristics.mrvDeg());
-		//solver = new FlexibleBacktrackingSolver<>();
 		int[] horariosPIBITI = {};
-		//int[] horariosPIBITI = {8,8,8,8,8};
-		//int[] horariosPIBIC = {4,4,4,4,4};
 		int[] horariosPIBIC = {};
 		int[] horariosEstagio = {};
-		//int[] horariosTrabalho = {8,8,2,4,12,2};
 		int[] horariosTrabalho = {0,0,0,0,1,10};
 		ArrayList<AtividadesComp> atividades = new ArrayList<>();
 		atividades.add(new AtividadesComp("Palestra",0,5));
@@ -56,11 +47,7 @@ public class testeCaso35 {
 		descanso.add(new Descanso("Descanso",4,7));
 		CSP<Variable, String> cspdia = new MapSemana(caso, horariosPIBITI, horariosPIBIC, atividades,horariosEstagio,horariosTrabalho, blocos,descanso);
 		
-		solution = solver.solve(cspdia);
-		//solution.ifPresent(System.out::println);
-		
-		ArrayList<Resposta> res = solution.get().RetornaOMapa();
-		new PrintTabela(res);
+		new TestaDeTudo( cspdia);
 	}
 
 }
