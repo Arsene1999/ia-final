@@ -865,7 +865,6 @@ public class MapSemana extends CSP<Variable, String> {
 		}
 		
 		if(horariosPIBITI.length > 0) {
-			System.out.println(horariosPIBITI.length);
 			AddPIBITIouPIBIC("PIBITI",horariosPIBITI); 
 		}
 		if(horariosPIBIC.length > 0) {
