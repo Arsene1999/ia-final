@@ -40,7 +40,7 @@ public class testeCaso21 {
 		blocos.add(new BlocoDeEstudo("COMP0461",4));
 		
 		ArrayList<Descanso> descanso = new ArrayList<>();
-		descanso.add(new Descanso("Descanso",0,5));
+		descanso.add(new Descanso("Dormir",0,5));
 		descanso.add(new Descanso("Descanso",1,9));
 		descanso.add(new Descanso("Descanso",2,6));
 		descanso.add(new Descanso("Descanso",3,14));

@@ -17,7 +17,7 @@ import aima.core.search.csp.solver.inference.ForwardCheckingStrategy;
 
 public class TestaDeTudo {
 	TestaDeTudo(CSP<Variable, String> cspdia){
-		CspSolver<Variable, String> solver = new FlexibleBacktrackingSolver<Variable, String>().set(CspHeuristics.mrvDeg()).set(new ForwardCheckingStrategy<>());
+		CspSolver<Variable, String> solver = new FlexibleBacktrackingSolver<Variable, String>().set(new ForwardCheckingStrategy<>());
 		Optional<Assignment<Variable, String>> solution = solver.solve(cspdia);
 		ArrayList<Resposta> res = solution.get().RetornaOMapa();
 		new PrintTabela(res);
@@ -89,8 +89,7 @@ public class TestaDeTudo {
 		System.out.println();
             
         // FC + MRV&DEG
-		solver = new FlexibleBacktrackingSolver<Variable, String>().set(CspHeuristics.mrvDeg())
-                    .set(new ForwardCheckingStrategy<>());
+		solver = new FlexibleBacktrackingSolver<Variable, String>().set(CspHeuristics.mrvDeg()).set(new ForwardCheckingStrategy<>());
 		solver.addCspListener(stepCounter);
 		stepCounter.reset();
 		startTime = System.nanoTime();
